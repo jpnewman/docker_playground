@@ -1,0 +1,203 @@
+# Adam Admin
+dn: uid=adam.admin,ou=People,dc=example,dc=org
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+cn: Adam Admin
+sn: Admin
+uid: adam.admin
+uidNumber: 16859
+gidNumber: 1000
+mail: adam.admin@example.org
+userPassword: password123
+homeDirectory: /home/adam.admin
+loginShell: /bin/bash
+gecos: adam
+shadowLastChange: 0
+shadowMax: 0
+shadowWarning: 0
+
+
+# Bob Builder
+dn: uid=bob.builder,ou=People,dc=example,dc=org
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+cn: Bob Builder
+sn: Builder
+uid: bob.builder
+uidNumber: 16860
+gidNumber: 1000
+mail: bob.builder@example.org
+userPassword: password123
+homeDirectory: /home/bob.builder
+loginShell: /bin/bash
+gecos: bob
+shadowLastChange: 0
+shadowMax: 0
+shadowWarning: 0
+
+# Charlie CI
+dn: uid=charlie.ci,ou=People,dc=example,dc=org
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+cn: Charlie CI
+sn: CI
+uid: charlie.ci
+uidNumber: 16861
+gidNumber: 1000
+mail: charlie.ci@example.org
+userPassword: password123
+homeDirectory: /home/charlie.ci
+loginShell: /bin/bash
+gecos: charlie
+shadowLastChange: 0
+shadowMax: 0
+shadowWarning: 0
+
+# Dylan Deploy
+dn: uid=dylan.deploy,ou=People,dc=example,dc=org
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+cn: Dylan Deploy
+sn: Deploy
+uid: dylan.deploy
+uidNumber: 16862
+gidNumber: 1000
+mail: dylan.deploy@example.org
+userPassword: password123
+homeDirectory: /home/charlie.ci
+loginShell: /bin/bash
+gecos: dylan
+shadowLastChange: 0
+shadowMax: 0
+shadowWarning: 0
+
+# Edward Editor
+dn: uid=edward.editor,ou=People,dc=example,dc=org
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+cn: Edward Editor
+sn: Editor
+uid: edward.editor
+uidNumber: 16863
+gidNumber: 1000
+mail: edward.editor@example.org
+userPassword: password123
+homeDirectory: /home/dylan.deploy
+loginShell: /bin/bash
+gecos: edward
+shadowLastChange: 0
+shadowMax: 0
+shadowWarning: 0
+
+# Frank Fixer
+dn: uid=frank.fixer,ou=People,dc=example,dc=org
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+cn: Frank Fixer
+sn: Fixer
+uid: frank.fixer
+uidNumber: 16864
+gidNumber: 1000
+mail: frank.fixer@example.org
+userPassword: password123
+homeDirectory: /home/frank.fixer
+loginShell: /bin/bash
+gecos: frank
+shadowLastChange: 0
+shadowMax: 0
+shadowWarning: 0
+
+# Gerrit Service User
+dn: cn=gerrit_serviceuser,cn=Services,ou=Groups,dc=example,dc=org
+objectClass: top
+objectClass: person
+sn: gerrit_serviceuser
+description: Service account for Gerrit access to LDAP
+userPassword: password123
+
+dn: cn=gerrit_ldapuser,cn=Services,ou=Groups,dc=example,dc=org
+objectClass: top
+objectClass: person
+sn: gerrit_ldapuser
+description: LDAP account for Gerrit access
+userPassword: password123
+
+dn: uid=gerritadmin,cn=Gerrit,ou=Groups,dc=example,dc=org
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+cn: Gerrit Admin
+sn: Gerrit Admin
+uid: gerritadmin
+uidNumber: 16865
+gidNumber: 1002
+mail: gerritadmin@example.org
+userPassword: password123
+homeDirectory: /home/gerritadmin
+loginShell: /bin/bash
+gecos: gerritadmin
+shadowLastChange: 0
+shadowMax: 0
+shadowWarning: 0
+
+dn: uid=gerrit_jenkins,ou=People,dc=example,dc=org
+objectclass: account
+objectclass: simpleSecurityObject
+objectclass: top
+uid: gerrit_jenkins
+userpassword: password123
+
+# Tim Tester
+dn:cn=Tim Tester,ou=People,dc=example,dc=org
+objectClass: top
+objectClass: posixAccount
+objectClass: shadowAccount
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+cn: Tim Tester
+sn: Tester
+uid: tim.tester
+gidNumber: 1000
+uidNumber: 16866
+gn: Tim
+o: Work
+l: London
+street: 221B Baker Street
+postalCode: NW1 6XE
+telephoneNumber: +44 123 1234 1234
+mail: tim.tester@example.org
+userPassword: password123
+homeDirectory: /home/tim.tester
+loginShell: /bin/bash
+gecos: tim
+shadowLastChange: 0
+shadowMax: 0
+shadowWarning: 0

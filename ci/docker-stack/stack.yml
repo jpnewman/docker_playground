@@ -1,0 +1,106 @@
+version: '3.7'
+
+services:
+  gerrit:
+    image: openfrontier/gerrit
+    ports:
+      - "29418:29418"
+      - "8686:8080"
+    environment:
+      - WEBURL=http://localhost:8686
+      - DATABASE_TYPE=postgresql
+      - DATABASE_HOSTNAME=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_DATABASE=reviewdb
+      - DATABASE_USERNAME=postgres_serviceuser
+      - DATABASE_PASSWORD=password123
+      - AUTH_TYPE=LDAP
+      - LDAP_SERVER=ldap://ldap:389
+      - LDAP_USERNAME=cn=admin,dc=example,dc=org
+      - LDAP_PASSWORD=admin
+      - LDAP_ACCOUNTBASE=ou=People,dc=example,dc=org
+      - LDAP_GROUPBASE=ou=Groups,dc=example,dc=org
+      - LDAP_REFERRAL=follow
+      - LDAP_ACCOUNTPATTERN=(uid=$${username})
+      - LDAP_GROUPPATTERN=(cn=$${groupname})
+      - LDAP_ACCOUNTFULLNAME=cn
+      - LDAP_ACCOUNTEMAILADDRESS=mail
+      - LDAP_READTIMEOUT=1s
+      - LDAP_SSLVERIFY=false
+      - GERRIT_INIT_ARGS=--install-all-plugins
+    depends_on:
+      - ldap
+      - postgres
+
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres_serviceuser
+      - POSTGRES_PASSWORD=password123
+      - POSTGRES_DB=reviewdb
+
+  pgadmin4:
+    image: dpage/pgadmin4
+    ports:
+      - "8484:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=postgres.admin@example.org
+      - PGADMIN_DEFAULT_PASSWORD=password123
+    depends_on:
+      - postgres
+
+  ldap:
+    image: osixia/openldap
+    command: --copy-service -l debug
+    hostname: ldap.example.org
+    ports:
+      - "389:389"
+      - "636:636"
+    environment:
+      - LDAP_ORGANISATION="Example Inc."
+      - LDAP_DOMAIN=example.org
+      - LDAP_BASE_DN=
+      # - LDAP_ADMIN_PASSWORD=admin
+      # - LDAP_CONFIG_PASSWORD=config
+      - LDAP_TLS_ENFORCE=false
+      - LDAP_REPLICATION=false
+      - KEEP_EXISTING_CONFIG=false
+      - LDAP_REMOVE_CONFIG_AFTER_SETUP=true
+    volumes:
+      - ./ldif-data:/container/service/slapd/assets/config/bootstrap/ldif/custom
+
+  phpldapadmin:
+    image: osixia/phpldapadmin
+    command: --loglevel debug
+    environment:
+      - PHPLDAPADMIN_LDAP_HOSTS=ldap
+      - PHPLDAPADMIN_HTTPS=false
+    ports:
+      - "8282:80"
+    depends_on:
+      - ldap
+
+  jenkins:
+    image: jpnewman/jenkins:lts
+    environment:
+      - GERRIT_HOST_NAME=gerrit
+      - GERRIT_FRONT_END_URL=http://gerrit:8080
+      - GERRIT_USERNAME=gerrit_jenkins
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    depends_on:
+      - gerrit
+
+  scope:
+    image: weaveworks/scope:1.10.1
+    ports:
+      - "4040:4040"
+    labels:
+      - "works.weave.role=system"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:rw"
+    command:
+      - "--probe.docker=true"
