@@ -22,7 +22,7 @@ ssh-keygen -t rsa -b 4096 -m PEM -C "gerrit_jenkins@example.org" -f id_rsa
 >
 > *i.e* <https://github.com/sshnet/SSH.NET/issues/465>
 >
-> Without this argument Gerrit Trigger plugin 2.27.7 throws the following error.
+> Without this argument Jenkins Gerrit Trigger plugin 2.27.7 throws the following error.
 >
 > Connection error : com.jcraft.jsch.JSchException: invalid privatekey
 
