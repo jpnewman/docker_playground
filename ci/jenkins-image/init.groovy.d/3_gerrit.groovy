@@ -75,9 +75,14 @@ serverConfig.accumulateAll([
     'verdictCategories': categories,
     'useRestApi': restApi
 ])
-server = new GerritServer(gerrit_host_name)
-server.setConfig(new Config(serverConfig))
 
-plugin = PluginImpl.instance
-plugin.setServers([server] as LinkedList)
-plugin.save()
+Thread.start {
+    sleep 10000
+
+    server = new GerritServer(gerrit_host_name)
+    server.setConfig(new Config(serverConfig))
+
+    plugin = PluginImpl.instance
+    plugin.setServers([server] as LinkedList)
+    plugin.save()
+}

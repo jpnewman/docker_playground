@@ -47,7 +47,7 @@ docker run -p 8080:8080 -p 50000:50000 --name=jenkins-master -e GERRIT_HOST_NAME
 ### Get List of plugins
 
 ~~~
-curl -sSL "http://admin:admin@localhost:8080/pluginManager/api/xml?depth=1&xpath=/*/*/shortName|/*/*/version&wrapper=plugins" | perl -pe 's/.*?<shortName>([\w-]+).*?<version>([^<]+)()(<\/\w+>)+/\1 \2\n/g'|sed 's/ /:/' > _plugins.txt
+curl -sSL "http://adam.admin:password123@localhost:8080/pluginManager/api/xml?depth=1&xpath=/*/*/shortName|/*/*/version&wrapper=plugins" | perl -pe 's/.*?<shortName>([\w-]+).*?<version>([^<]+)()(<\/\w+>)+/\1 \2\n/g'|sed 's/ /:/' > _plugins.txt
 ~~~
 
 ### Docker Exec
@@ -64,7 +64,7 @@ open http://localhost:8080
 
 |Service|URL|Username|Password|
 |---|---|---|---|
-|**Jenkins**|<http://localhost:8080>|admin|admin|
+|**Jenkins**|<http://localhost:8080>|adam.admin|password123|
 
 ### Stop and Remove Docker Container
 

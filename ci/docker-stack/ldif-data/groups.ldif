@@ -18,4 +18,11 @@ objectClass: posixGroup
 objectClass: top
 cn: Gerrit
 gidNumber: 1002
+memberuid: adam.admin
+memberuid: bob.builder
+memberuid: charlie.ci
+memberuid: dylan.deploy
+memberuid: edward.editor
+memberuid: frank.fixer
+memberuid: tim.tester
 description: Gerrit Users

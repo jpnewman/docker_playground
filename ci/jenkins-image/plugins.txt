@@ -2,5 +2,8 @@ command-launcher:1.2
 bouncycastle-api:2.17
 structs:1.17
 jdk-tool:1.1
+ldap:1.20
+mailer:1.22
+display-url-api:2.3.0
 script-security:1.48
 gerrit-trigger:2.27.7
