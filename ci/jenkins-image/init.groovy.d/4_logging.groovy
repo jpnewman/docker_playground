@@ -8,6 +8,7 @@ import hudson.logging.*
 loggers = [
   "Gerrit-Plugin": [
     "com.sonyericsson.hudson.plugins.gerrit": "ALL",
+    "com.sonymobile.tools.gerrit.gerritevents": "ALL",
     "com.sonyericsson.hudson.plugins.gerrit.trigger.PluginImpl": "ALL",
   ]
 ]
